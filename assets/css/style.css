@@ -40,6 +40,11 @@ a.remove:hover {
     opacity: 0.7;
 }
 
+span.created-at {
+    font-size: 11px;
+    margin-right: 12px;
+}
+
 .page {
     position: absolute;
     width: 80%;
@@ -164,6 +169,10 @@ a.remove:hover {
 .main .nav .menu ul li a {
     text-decoration: none;
     color: #0c7388;
+}
+
+.main .nav .menu ul li.active a {
+    color: #79BC46;
 }
 
 .main .nav .menu ul li {
