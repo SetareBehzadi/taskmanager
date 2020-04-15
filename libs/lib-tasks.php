@@ -22,6 +22,14 @@ function addFolder($folder_name){
     $stmt->execute([':folder_name'=>$folder_name,':user_id'=>$current_user_id]);
     return $stmt->rowCount();
 }
+function doneSwith($task_id){
+    global $pdo;
+    $current_user_id = getCurrentUserId();
+    $sql = "Update `tasks` set is_done = 1 - is_done where user_id = :userID and id = :taskID";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':taskID'=>$task_id,':userID'=>$current_user_id]);
+    return $stmt->rowCount();
+}
 
 function getFolders(){
     global $pdo;

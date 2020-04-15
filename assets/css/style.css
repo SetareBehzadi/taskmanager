@@ -166,6 +166,12 @@ span.created-at {
     padding-left: 0px;
 }
 
+.success {
+    background: #def9df !important;
+    border: 1px solid #a4cca6 !important;
+    color: #205217 !important;
+}
+
 .main .nav .menu ul li a {
     text-decoration: none;
     color: #0c7388;
