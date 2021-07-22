@@ -2,8 +2,8 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Task manager UI</title>
-  <link rel="stylesheet" href="./style.css">
+  <title><?= SITE_TITLE ?></title>
+  <link rel="stylesheet" href="<?= BASE_URL?>assets/css/style.css">
 
 </head>
 <body>
@@ -11,7 +11,7 @@
 <div class="page">
   <div class="pageHeader">
     <div class="title">Dashboard</div>
-    <div class="userPanel"><i class="fa fa-chevron-down"></i><span class="username">John Doe </span><img src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/73.jpg" width="40" height="40"/></div>
+    <div class="userPanel"><i class="fa fa-chevron-down"></i><span class="username">John Doe </span><img src="../assets/img/team2.jpg" width="40" height="40"/></div>
   </div>
   <div class="main">
     <div class="nav">
@@ -71,7 +71,9 @@
   </div>
 </div>
 <!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./script.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'>
+
+  </script><script  src="../assets/js/script.js"></script>
 
 </body>
 </html>
