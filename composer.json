@@ -1,0 +1,14 @@
+{
+    "name": "setare/task-manager",
+    "description": "taskManager with php and ajax",
+    "authors": [
+        {
+            "name": "behzadi",
+            "email": "setare.behzadi@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "hekmatinasser/verta": "^1.12"
+    }
+}
