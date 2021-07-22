@@ -1,8 +1,7 @@
 <?php
-$database_config = [
-    "host" => 'localhost',
-    "port" => '3307',
+$database_config = (object)[
+    "host" => '127.0.0.1:3306',
     "user" => 'root',
     "pass" => '',
-    "db" => 'taskManager',
+    "db" => 'taskmanager',
 ];
