@@ -1,6 +1,6 @@
 <?php
 include "bootstrap/init.php";
-use Hekmatinasser\Verta\Verta;
+/*use Hekmatinasser\Verta\Verta;
 $v = Verta::now();
-echo $v;
+echo $v;*/
 include "tpl/tpl-index.php";
