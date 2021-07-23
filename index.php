@@ -1,6 +1,11 @@
 <?php
 include "bootstrap/init.php";
-/*use Hekmatinasser\Verta\Verta;
-$v = Verta::now();
-echo $v;*/
+
+if (isset($_GET['delete_folder']) && is_numeric($_GET['delete_folder'])){
+    deleteFolder($_GET['delete_folder']);
+}
+
+$folders = getFolders();
+$tasks = getTasks();
+dd($tasks);
 include "tpl/tpl-index.php";
