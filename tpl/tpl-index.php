@@ -12,7 +12,7 @@
     <div class="pageHeader">
         <div class="title">Dashboard</div>
         <div class="userPanel"><i class="fa fa-chevron-down"></i><span class="username">John Doe </span><img
-                    src="../assets/img/team2.jpg" width="40" height="40"/></div>
+                    src="<?= BASE_URL ?>/assets/img/team2.jpg" width="40" height="40"/></div>
     </div>
     <div class="main">
         <div class="nav">
@@ -24,18 +24,22 @@
             <div class="menu">
                 <div class="title">Folders</div>
                 <ul class="folderList">
+                    <li class="<?= ($folder->id == $_GET['folder_id'])?'active':null ?>">
+                        <a href="?folder_id="><i class="fa fa-folder"></i>All
+                        </a>
+                    </li>
                     <?php foreach ($folders as $folder) : ?>
-                        <li>
+                        <li class="<?= ($folder->id == $_GET['folder_id'])?'active':null ?>">
                             <a href="?folder_id=<?= $folder->id ?>">
                                 <i class="fa fa-folder"></i><?= $folder->name ?>
                             </a>
-                            <a href="?delete_folder=<?= $folder->id ?>">
+                            <a href="?delete_folder=<?= $folder->id ?>" onclick="return confirm('Are You Sure to Delete This Item');">
                                 <i style="float: right;color: red" class="fa fa-trash-o"></i>
                             </a>
                         </li>
 
                     <?php endforeach; ?>
-                    <li class="active"><i class="fa fa-folder"></i>folder</li>
+
                 </ul>
                 <div class="searchbox" style="margin:6px;">
                     <input type="text" id="addFolderInput" placeholder="Add New Folder"/>
@@ -47,40 +51,36 @@
         </div>
         <div class="view">
             <div class="viewHeader">
-                <div class="title">Manage Tasks</div>
-                <div class="functions">
+                <div class="searchbox" style="margin:6px;">
+                    <input type="text" id="addTaskInput" placeholder="Add New Task"/>
+                  <!--  <button id="addTaskBtn" class="clickable">+</button>-->
+                </div>
+              <!--  <div class="functions">
                     <div class="button active">Add New Task</div>
                     <div class="button">Completed</div>
                     <div class="button inverz"><i class="fa fa-trash-o"></i></div>
-                </div>
+                </div>-->
             </div>
             <div class="content">
                 <div class="list">
                     <div class="title">Today</div>
-                    <ul >
-                        <li class="checked"><i class="fa fa-check-square-o"></i><span>Update team page</span>
-                            <div class="info">
-                                <div class="button green">In progress</div>
-                                <span>Complete by 25/04/2014</span>
-                            </div>
-                        </li>
-                        <li><i class="fa fa-square-o"></i><span>Design a new logo</span>
-                            <div class="info">
-                                <div class="button">Pending</div>
-                                <span>Complete by 10/04/2014</span>
-                            </div>
-                        </li>
-                        <li><i class="fa fa-square-o"></i><span>Find a front end developer</span>
-                            <div class="info"></div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="list">
-                    <div class="title">Tomorrow</div>
                     <ul>
-                        <li><i class="fa fa-square-o"></i><span>Find front end developer</span>
-                            <div class="info"></div>
-                        </li>
+                        <?php if (sizeof($tasks) > 0):?>
+                        <?php foreach ($tasks as $task):?>
+                            <li class="<?=$task->is_done?'checked':' ' ;?>">
+                                <i class="fa <?=$task->is_done?'fa-check-square-o':'fa-square-o' ;?>"></i>
+                                <span><?=$task->title?></span>
+                                <div class="info">
+                                    <span class="created-at">created_at <?=$task->created_at?></span>
+                                    <a href="?delete_task=<?=$task->id?>" onclick="return confirm('Are You Sure to Delete This Item');">
+                                        <i style="float: right;color: red" class="fa fa-trash-o"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        <?php endforeach;?>
+                        <?php else: ?>
+                        <li>No Task Here ... </li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -98,18 +98,37 @@
             //let name = document.getElementById('addFolderInput').value;
             var name = $('input#addFolderInput').val();
             $.ajax({
-                url:"process/ajaxHandler.php",
-                data:{action:"addFolder",folderName:name},
-                method:"post",
-                success:function (response) {
-                    if (response == '1'){
-                        $('<li> <a href="#"><i class="fa fa-folder"></i>' + name+
+                url: "process/ajaxHandler.php",
+                data: {action: "addFolder", folderName: name},
+                method: "post",
+                success: function (response) {
+                    if (response == '1') {
+                        $('<li> <a href="#"><i class="fa fa-folder"></i>' + name +
                             ' </a></li>').appendTo('ul.folderList');
 
                     }
                 },
             });
         })
+
+        $('#addTaskInput').on('keypress',function(event) {
+            if (event.which == 13) {
+                var title = $('input#addTaskInput').val();
+                $.ajax({
+                    url: "process/ajaxHandler.php",
+                    data: {action: "addTask", taskName: title,folder_id:<?=$_GET['folder_id']?>},
+                    method: "post",
+                    success: function (response) {
+
+                        if (response == '1') {
+                            location.reload();
+                        }else{
+                            alert(response)
+                        }
+                    },
+                });
+            }
+        });
     })
 </script>
 </body>

@@ -137,6 +137,10 @@ body {
   text-decoration: none;
   color: #0c7388;
 }
+
+.main .nav .menu ul li.active a{
+  color: #79BC46;
+}
 .main .nav .menu ul li.active {
   color: #79BC46;
 }
@@ -154,7 +158,7 @@ body {
 .main .view .viewHeader {
   width: 100%;
   height: 70px;
-  line-height: 70px;
+  /*line-height: 70px;*/
   padding: 20px 20px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -274,4 +278,8 @@ body {
 .clickable:hover{
   cursor:pointer;
   opacity:0.7;
+}
+.created-at{
+  font-size: 11px;
+  margin-right: 12px;
 }

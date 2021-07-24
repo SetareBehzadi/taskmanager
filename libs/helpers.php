@@ -12,5 +12,7 @@ function isAjaxRequest(){
 }
 
 function dd($variable){
-    echo "<pre>".var_dump($variable)."</pre>";
+    echo "<pre style='color: chocolate'>";
+    var_dump($variable);
+    echo "</pre>";
 }
