@@ -11,7 +11,9 @@
 <div class="page">
     <div class="pageHeader">
         <div class="title">Dashboard</div>
-        <div class="userPanel"><i class="fa fa-chevron-down"></i><span class="username">John Doe </span><img
+        <div class="userPanel">
+            <a href="<?= site_url("?logout=".$user->id)?>"><i class="fa fa-sign-out"></i></a>
+            <span class="username"><?=$user->name ?getLoggInUser()->name : "unknownUser"?></span><img
                     src="<?= BASE_URL ?>/assets/img/team2.jpg" width="40" height="40"/></div>
     </div>
     <div class="main">
@@ -97,6 +99,7 @@
         $('#addFolderBtn').click(function () {
             //let name = document.getElementById('addFolderInput').value;
             var name = $('input#addFolderInput').val();
+            console.log(name)
             $.ajax({
                 url: "process/ajaxHandler.php",
                 data: {action: "addFolder", folderName: name},
@@ -114,9 +117,10 @@
         $('#addTaskInput').on('keypress',function(event) {
             if (event.which == 13) {
                 var title = $('input#addTaskInput').val();
+                var folderId = <?= isset($_GET['folder_id']) ?  $_GET['folder_id']: null;?>
                 $.ajax({
                     url: "process/ajaxHandler.php",
-                    data: {action: "addTask", taskName: title,folder_id:<?=$_GET['folder_id']?>},
+                    data: {action: "addTask", taskName: title,folder_id:folderId},
                     method: "post",
                     success: function (response) {
 

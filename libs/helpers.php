@@ -16,3 +16,16 @@ function dd($variable){
     var_dump($variable);
     echo "</pre>";
 }
+
+function site_url($uri = ''){
+    return BASE_URL . $uri;
+}
+function message($msg){
+    echo "<div style='border-radius:5px; width: 80%;margin: 50px auto;background: crimson'>$msg</div>";
+    die();
+}
+
+function redirect($url){
+    header("Location: $url");
+    die();
+}

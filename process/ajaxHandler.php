@@ -16,7 +16,7 @@ switch ($_POST['action']){
         $folder['user_id'] = GetCurrentUserId();
         echo addFolder($folder);
         break;
-        case "addTask":
+     case "addTask":
             $folderId = $_POST['folder_id'];
             $task= $_POST['taskName'];
            if (!isset($folderId) || empty($folderId)){
